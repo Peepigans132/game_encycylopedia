@@ -1,12 +1,5 @@
 import React, { useState } from "react";
-import {
-  BrowserRouter,
-  Routes,
-  Route,
-  Link,
-  useNavigate,
-  useLocation,
-} from "react-router-dom"; 
+import { HashRouter as Router, Routes, Route, Link, useNavigate, useLocation } from "react-router-dom";
 import { styled, alpha } from "@mui/material/styles";
 import AppBar from "@mui/material/AppBar";
 import Box from "@mui/material/Box";
@@ -20,6 +13,7 @@ import MenuItem from "@mui/material/MenuItem";
 import MenuIcon from "@mui/icons-material/Menu";
 import SearchIcon from "@mui/icons-material/Search";
 import Grid from "@mui/material/Grid";
+
 
 const Search = styled("div")(({ theme }) => ({
   position: "relative",
@@ -128,7 +122,7 @@ function ClickableImages(): JSX.Element {
   ];
 
   const getRandomGames = () => allImages.sort(() => 0.5 - Math.random()).slice(0, 2);
-  const [images, setImages] = useState<Image[]>(getRandomGames());
+  const [images] = useState<Image[]>(getRandomGames());
 
   const handleClick = (image: Image) => {
     navigate(`/game/${image.id}`, { state: { game: image } });
@@ -180,12 +174,12 @@ function GameDetails() {
 
 function App() {
   return (
-    <BrowserRouter>
+    <Router>
       <Routes>
         <Route path="/" element={<ClickableImages />} />
         <Route path="/game/:id" element={<GameDetails />} />
       </Routes>
-    </BrowserRouter>
+    </Router>
   );
 }
 
