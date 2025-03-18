@@ -4,7 +4,8 @@ frontend:
     preBuild:
       commands:
        - nvm use 18.19.0 || nvm install 18.19.0
-        - nvm use 18.19.0rm -rf node_modules package-lock.json dist
+        - nvm use 18.19.0rm 
+        -rf node_modules package-lock.json dist
         - npm ci
     build:
       commands:
